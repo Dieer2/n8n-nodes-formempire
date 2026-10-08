@@ -1,0 +1,23 @@
+# Kiadás npm-re eredetigazolással (provenance): a verziócímke (v*) pusholásakor fut.
+# Hitelesítés npm Trusted Publishing-gel (OIDC), token nélkül — az npm-en a csomag beállításainál kell felvenni:
+# GitHub Actions, repo Dieer2/n8n-nodes-formempire, workflow release.yml.
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm publish --provenance --access public
