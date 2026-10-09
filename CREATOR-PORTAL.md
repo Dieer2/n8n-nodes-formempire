@@ -38,3 +38,17 @@ FormEmpire is a Hungarian form builder for quotes and orders. This package adds 
 - 0.1.2: javítva (NodeApiError/NodeOperationError, trigger tool nélkül, naplózott catch, világos/sötét ikon), `@n8n/node-cli` 0.51; `npx @n8n/scan-community-package@beta n8n-nodes-formempire` → minden ellenőrzés OK; **automata review: Complete**.
 - **Manual Review: Awaiting Video** — ≤5 perces, vágatlan képernyővideó kell (feltöltés vagy link): 1) n8n példányban a 0.1.2 telepítése npm-ről (Settings → Community nodes), 2) új workflow + node beszúrása, 3) credential létrehozása és a teszt sikere, 4) a leggyakoribb műveletek (Trigger: beküldés érkezik; FormEmpire: Get Many submissions, Update), 5) AI-tool használat egy példával (a FormEmpire node `usableAsTool`).
   Helyi n8n a videóhoz: `npx n8n` (http://localhost:5678), a trigger élő teszteléséhez nyilvános URL kell (pl. a teszt.hydroref.io laborba nem jó; `npx n8n` + tunnel: `N8N_TUNNEL` / `--tunnel`).
+
+## Demóvideó – forgatókönyv (≤5 perc, vágás nélkül, 1080p)
+
+Előkészítés (nem kell a videón): `~/n8n-demo`-ban telepített n8n; indítás: `cd ~/n8n-demo && npx n8n --tunnel` → http://localhost:5678
+(első indításkor tulajdonosi fiók létrehozása — ez is lehet a videó előtt). A tunnel-URL-t az n8n a terminálra írja; ez kell, hogy a FormEmpire el tudja érni a webhookot.
+Kéznél: egy FormEmpire API-kulcs (API oldal → Megmutatás) és a nyilvános TESZT-űrlap linkje másik fülön.
+
+1. **Telepítés npm-ről**: Settings → Community nodes → Install → `n8n-nodes-formempire` → verzió: **0.1.2** (ugyanaz, mint a beküldött) → elfogadás → Install. Mutasd a „Installed” listát.
+2. **Új workflow** → `+` → keresés „FormEmpire” → **FormEmpire Trigger** beszúrása.
+3. **Credential**: Create new → FormEmpire API → kulcs beillesztése → Save → a zöld „Connection tested successfully” látszódjon.
+4. **Trigger**: Form = TESZT – Rendelés árkalkulátorral → „Listen for test event” → a másik fülön kitöltöd és beküldöd az űrlapot → az n8n-ben megjelenik a beérkezett adat (submission, answers, fields).
+5. **FormEmpire node**: Submission → Get Many (Form kiválasztva, limit 3) → Execute step → eredmény; majd Submission → Update (Submission ID a trigger kimenetéből, Status: Done, Tags: `n8n-demo`) → Execute step → eredmény.
+6. **AI-tool**: új AI Agent node (bármely modellel, vagy csak a tool-csatlakozás mutatása) → Tools → FormEmpire (Get Many Forms) hozzáadása → egy példa kérés („List my forms”) futtatása, vagy legalább a tool-csatlakozás látszódjon.
+7. Mentés, kész.
