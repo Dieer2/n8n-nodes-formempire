@@ -5,7 +5,7 @@ export class FormEmpireApi implements ICredentialType {
 	name = 'formEmpireApi';
 	displayName = 'FormEmpire API';
 	documentationUrl = 'https://formempire.hu/app/api';
-	icon: Icon = 'file:../nodes/FormEmpire/formempire.svg';
+	icon: Icon = { light: 'file:../nodes/FormEmpire/formempire.svg', dark: 'file:../nodes/FormEmpire/formempire.dark.svg' };
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',

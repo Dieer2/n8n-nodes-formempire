@@ -8,13 +8,12 @@ export class FormEmpireTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'FormEmpire Trigger',
 		name: 'formEmpireTrigger',
-		icon: 'file:formempire.svg',
+		icon: { light: 'file:formempire.svg', dark: 'file:formempire.dark.svg' },
 		group: ['trigger'],
 		version: 1,
 		subtitle: '=New submission',
 		description: 'Starts the workflow when a FormEmpire form receives a submission',
 		defaults: { name: 'FormEmpire Trigger' },
-		usableAsTool: true,
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'formEmpireApi', required: true }],
@@ -73,7 +72,12 @@ export class FormEmpireTrigger implements INodeType {
 			async delete(this: IHookFunctions): Promise<boolean> {
 				const data = this.getWorkflowStaticData('node');
 				if (data.webhookId) {
-					try { await this.helpers.httpRequestWithAuthentication.call(this, 'formEmpireApi', { method: 'DELETE', url: `${BASE}/webhooks/${data.webhookId}`, json: true }); } catch { /* már nincs meg: rendben */ }
+					try {
+						await this.helpers.httpRequestWithAuthentication.call(this, 'formEmpireApi', { method: 'DELETE', url: `${BASE}/webhooks/${data.webhookId}`, json: true });
+					} catch (error) {
+						// a feliratkozás már nem létezik (törölték a FormEmpire-ban): nem hiba, de jelezzük
+						this.logger.warn(`FormEmpire webhook ${String(data.webhookId)} could not be removed: ${(error as Error).message}`);
+					}
 					delete data.webhookId;
 				}
 				return true;
