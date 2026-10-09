@@ -30,3 +30,11 @@ FormEmpire is a Hungarian form builder for quotes and orders. This package adds 
 - icon: SVG (light/dark same) ✔
 
 **Test account for reviewers:** a FormEmpire Pro-fiók API-kulcsa kell — külön tesztfiókot érdemes adni (ne a sajátot). Készíthető: formempire.hu regisztráció + Pro próba, majd API-kulcs.
+
+## Állapot (2026-10-09)
+
+- 0.1.0: kézi kiadás (2FA) → a portál elutasította: nincs provenance.
+- 0.1.1: GitHub Actions + provenance → beküldve; automata ellenőrzés: 3 hiba (nyers hiba újradobása, trigger `usableAsTool`, üres catch) + ikon-figyelmeztetés.
+- 0.1.2: javítva (NodeApiError/NodeOperationError, trigger tool nélkül, naplózott catch, világos/sötét ikon), `@n8n/node-cli` 0.51; `npx @n8n/scan-community-package@beta n8n-nodes-formempire` → minden ellenőrzés OK; **automata review: Complete**.
+- **Manual Review: Awaiting Video** — ≤5 perces, vágatlan képernyővideó kell (feltöltés vagy link): 1) n8n példányban a 0.1.2 telepítése npm-ről (Settings → Community nodes), 2) új workflow + node beszúrása, 3) credential létrehozása és a teszt sikere, 4) a leggyakoribb műveletek (Trigger: beküldés érkezik; FormEmpire: Get Many submissions, Update), 5) AI-tool használat egy példával (a FormEmpire node `usableAsTool`).
+  Helyi n8n a videóhoz: `npx n8n` (http://localhost:5678), a trigger élő teszteléséhez nyilvános URL kell (pl. a teszt.hydroref.io laborba nem jó; `npx n8n` + tunnel: `N8N_TUNNEL` / `--tunnel`).
