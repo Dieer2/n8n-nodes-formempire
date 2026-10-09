@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-formempire",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "n8n nodes for FormEmpire: new form submissions as a trigger, plus reading and updating submissions.",
   "license": "MIT",
   "homepage": "https://formempire.hu",
