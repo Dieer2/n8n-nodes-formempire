@@ -13,7 +13,7 @@ Beküldés: https://creators.n8n.io → Sign in → **Community nodes** → Subm
 | Author | FormEmpire — hello@formempire.hu |
 
 **Short description (EN):**
-FormEmpire is a Hungarian form builder for quotes and orders. This package adds a trigger that starts a workflow instantly when a form receives a submission, and a node to list forms, read submissions and update their status, tags and note.
+FormEmpire is a form builder for quotes and orders. This package adds a trigger that starts a workflow instantly when a form receives a submission, and a node to list forms, read submissions and update their status, tags and note.
 
 **Nodes:**
 - `FormEmpire Trigger` — instant trigger via FormEmpire's webhook subscription (REST hook); optional "abandoned fills" events.
