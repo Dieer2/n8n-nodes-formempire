@@ -1,6 +1,6 @@
 import type { IAuthenticateGeneric, ICredentialTestRequest, ICredentialType, Icon, INodeProperties } from 'n8n-workflow';
 
-// FormEmpire API-kulcs (Pro csomagtól): az ügyfél a FormEmpire → API oldalon készíti.
+// FormEmpire API key (Pro plan and up); the user creates it in FormEmpire under Account → API.
 export class FormEmpireApi implements ICredentialType {
 	name = 'formEmpireApi';
 	displayName = 'FormEmpire API';

@@ -1,5 +1,5 @@
-# Kiadás npm-re eredetigazolással (provenance): a verziócímke (v*) pusholásakor fut.
-# Hitelesítés npm Trusted Publishing-gel (OIDC), token nélkül — az npm-en a csomag beállításainál kell felvenni:
+# Publishes to npm with provenance when a version tag (v*) is pushed.
+# Authenticates with npm Trusted Publishing (OIDC), no token needed; configured on npm under the package settings:
 # GitHub Actions, repo Dieer2/n8n-nodes-formempire, workflow release.yml.
 name: Release
 on:

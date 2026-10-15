@@ -3,7 +3,7 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 
 const BASE = 'https://formempire.hu/api/v1';
 
-// Kiváltó: a FormEmpire feliratkozik az n8n webhook-címére (REST hook), és minden új beküldést azonnal elküld.
+// Trigger: subscribes the n8n webhook URL in FormEmpire (REST hook), so every new submission is pushed instantly.
 export class FormEmpireTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'FormEmpire Trigger',
@@ -75,7 +75,7 @@ export class FormEmpireTrigger implements INodeType {
 					try {
 						await this.helpers.httpRequestWithAuthentication.call(this, 'formEmpireApi', { method: 'DELETE', url: `${BASE}/webhooks/${data.webhookId}`, json: true });
 					} catch (error) {
-						// a feliratkozás már nem létezik (törölték a FormEmpire-ban): nem hiba, de jelezzük
+						// the subscription no longer exists (deleted in FormEmpire): not an error, but worth a warning
 						this.logger.warn(`FormEmpire webhook ${String(data.webhookId)} could not be removed: ${(error as Error).message}`);
 					}
 					delete data.webhookId;

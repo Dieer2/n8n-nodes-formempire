@@ -3,7 +3,7 @@ import { NodeApiError, NodeConnectionTypes, NodeOperationError } from 'n8n-workf
 
 const BASE = 'https://formempire.hu/api/v1';
 
-// Beküldések lekérése és módosítása a FormEmpire API-val.
+// Reads and updates form submissions through the FormEmpire REST API (programmatic node: all requests are made in execute()).
 export class FormEmpire implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'FormEmpire',
@@ -18,7 +18,6 @@ export class FormEmpire implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		usableAsTool: true,
 		credentials: [{ name: 'formEmpireApi', required: true }],
-		requestDefaults: { baseURL: BASE, headers: { Accept: 'application/json', 'Content-Type': 'application/json' } },
 		properties: [
 			{
 				displayName: 'Resource',
